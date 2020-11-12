@@ -16,16 +16,16 @@
     </header>
     <% if session[:error] %>
       <div class="flash error">
-        <p><%== session.delete(:error) %></p>
+        <p><%= session.delete(:error) %></p>
       </div>
     <% end %>
     <% if session[:success] %>
     <div class="flash success">
-      <p><%== session.delete(:success) %></p>
+      <p><%= session.delete(:success) %></p>
     </div>
     <% end %>
     <main>
-      <%= yield %>
+      <%== yield %>
     </main>
   </body>
 </html>
