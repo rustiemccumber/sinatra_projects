@@ -7,4 +7,4 @@ gem "erubis"
 
 group :production do 
   gem "puma"
-end 
+end
