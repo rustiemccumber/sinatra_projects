@@ -2,7 +2,7 @@
 <ul id="lists">
   <% sort_lists(@lists) do |list| %>
     <li class="<%= list_class(list) %>">
-      <a href="/lists/<%= list[:id].to_s %>">
+      <a href="/lists/<%= list[:id] %>">
         <h2><%= list[:name] %></h2>
         <p> <%= fraction_complete(list) %></p>
       </a>
