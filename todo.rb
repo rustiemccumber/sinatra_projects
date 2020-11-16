@@ -79,8 +79,8 @@ def error_for_todo(name)
   end
 end
 
-def load_list(index)
-  list = session[:lists][index] if index && session[:lists][index]
+def load_list(id)
+  list = session[:lists].find{ |list| list[:id] == id }
   return list if list
 
   session[:error] = "The specified list was not found."
@@ -163,7 +163,7 @@ post '/lists/:number/todos' do
     erb :specific_todo, layout: :layout
   else
     
-    id = next_element_id(@list[:todos]) # refine this later
+    id = next_todo_id(@list[:todos]) # refine this later
 
     @list[:todos] << { id: id, name: text, completed: false}
     session[:success] = "the todo was added."
