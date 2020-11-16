@@ -201,7 +201,7 @@ post "/lists/:number/todos/:todo_id" do
   todo[:completed] = is_completed
 
   session[:success] = "the todo has been updated"
-  redirect "/lists/#{@list_number}"
+  redirect "/lists/#{@list_number}/todos"
 end
 
 # Mark all todos as complete for a list
@@ -214,5 +214,5 @@ post "/lists/:number/complete_all" do
   end
   
   session[:success] = "All todos have been completed"
-  redirect "/lists/#{@list_number}"
+  redirect "/lists/#{@list_number}/todos"
 end
