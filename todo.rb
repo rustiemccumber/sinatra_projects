@@ -79,9 +79,9 @@ def error_for_todo(name)
   end
 end
 
-def load_list(idx)
-  list = session[:lists][idx]
-  return list
+def load_list(id)
+  list = session[:lists].find{ |list| list[:id] == id }
+  return list if list
 
   session[:error] = "The specified list was not found."
   redirect "/lists"
