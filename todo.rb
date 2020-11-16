@@ -85,7 +85,12 @@ def load_list(index)
 
   session[:error] = "The specified list was not found."
   redirect "/lists"
-end 
+end
+
+def next_element_id(elements)
+  max = elements.map { |element| element[:id] }.max || 0
+  max + 1
+end
 
 # Create a new list
 post '/lists' do
@@ -95,7 +100,8 @@ post '/lists' do
     session[:error] = error
     erb :new_list, layout: :layout
   else
-    session[:lists] << { name: list_name, todos: [] }
+    id = next_element_id(session[:lists])
+    session[:lists] << { id: id, name: list_name, todos: [] }
     session[:success] = 'The list has been created'
     redirect '/lists'
   end
@@ -146,11 +152,6 @@ post '/lists/:number/delete' do
   end
 end
 
-def next_todo_id(todos)
-  max = todos.map { |todo| todo[:id] }.max || 0
-  max + 1
-end
-
 post '/lists/:number/todos' do
   @list_number = params[:number].to_i
   @list = load_list(@list_number)
@@ -162,7 +163,7 @@ post '/lists/:number/todos' do
     erb :specific_todo, layout: :layout
   else
     
-    id = next_todo_id(@list[:todos]) # refine this later
+    id = next_element_id(@list[:todos]) # refine this later
 
     @list[:todos] << { id: id, name: text, completed: false}
     session[:success] = "the todo was added."
