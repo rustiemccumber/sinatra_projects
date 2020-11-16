@@ -187,7 +187,7 @@ end
 #update the status of a todo
 post "/lists/:number/todos/:todo_id" do
   @list_number = params[:number].to_i
-  @list = load_list(@list_id)
+  @list = load_list(@list_number)
   
   todo_number = params[:todo_id].to_i
   is_completed = params[:completed] == "true"
@@ -201,7 +201,7 @@ end
 # Mark all todos as complete for a list
 post "/lists/:number/complete_all" do
   @list_number = params[:number].to_i
-  @list = load_list(@list_id)
+  @list = load_list(@list_number)
 
   @list[:todos].each do |todo|
     todo[:completed] = true
