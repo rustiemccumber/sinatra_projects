@@ -32,8 +32,8 @@ helpers do
   def sort_todos(todos, &block)
     complete_todos, incomplete_todos = todos.partition { |todo| todo[:completed] }
 
-    incomplete_todos.each { |todo| yield todo, todos.index(todo)}
-    complete_todos.each { |todo| yield todo, todos.index(todo)}
+    incomplete_todos.each(&block)
+    complete_todos.each(&block)
   end
 end
 
