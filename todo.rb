@@ -141,8 +141,9 @@ post '/lists/:number' do
 end
 
 post '/lists/:number/delete' do
-  number = params[:number].to_i
-  session[:lists].delete_at(number)
+  @list_number = params[:number].to_i
+
+  session[:lists].reject! { |list| list[:id] == id }
 
   if env["HTTP_X_REQUESTED_WITH"] == "XMLHttpRequest"
     "/lists"
