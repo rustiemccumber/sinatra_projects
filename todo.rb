@@ -185,7 +185,7 @@ post '/lists/:number/todos/:todo_id/delete' do
     status 204 
   else
     session[:success] = "the todo has been updated"
-    redirect "/lists/#{@list_number}"
+    redirect "/lists/#{@list_number}/todos"
   end
 end
 
