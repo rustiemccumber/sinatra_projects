@@ -141,14 +141,14 @@ post '/lists/:number' do
 end
 
 post '/lists/:number/delete' do
-  @list_number = params[:number].to_i
+  list_number = params[:number].to_i
 
-  session[:lists].reject! { |list| list[:id] == id }
+  session[:lists].reject! { |list| list[:id] == list_number }
 
   if env["HTTP_X_REQUESTED_WITH"] == "XMLHttpRequest"
     "/lists"
   else
-    session[:success] = "the todo has been updated"
+    session[:success] = "the todo has been deleted"
     redirect "/lists"
   end
 end
