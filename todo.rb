@@ -80,8 +80,8 @@ def error_for_todo(name)
 end
 
 def load_list(idx)
-  list = session[:lists][idx] if idx
-  return list if list
+  list = session[:lists][idx]
+  return list
 
   session[:error] = "The specified list was not found."
   redirect "/lists"
