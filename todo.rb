@@ -208,8 +208,7 @@ end
 
 post "/lists/:number/complete_all" do
   @list_number = params[:number].to_i
-  @list = session[:lists][@list_number]
-  
+  @list = session[:lists].find { |list| list[:id] == @list_number}
   @list[:todos].each do |todo|
     todo[:completed] = true
   end
