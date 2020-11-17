@@ -160,7 +160,7 @@ post "/lists/:number/todos" do
     erb :specific_todo, layout: :layout
   else
     
-    id = next_element_id(@list[:todos]) # refine this later
+    id = next_element_id(@list[:todos])
     @list[:todos] << { id: id, name: text, completed: false}
 
     session[:success] = "the todo was added."
